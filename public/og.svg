@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-<rect width="1200" height="630" fill="#f8f8f5"/><rect x="72" y="70" width="10" height="10" rx="5" fill="#3157c9"/>
+<rect width="1200" height="630" fill="#faf7f0"/><rect x="72" y="70" width="10" height="10" rx="5" fill="#3157c9"/>
 <g font-family="Helvetica, Arial, sans-serif"><text x="100" y="82" fill="#59616d" font-size="18" letter-spacing="2">SOFTWARE ENGINEERING / APPLIED ML</text>
-<text x="64" y="272" fill="#20242c" font-size="140" font-weight="600" letter-spacing="-7">Shaury</text><text x="64" y="409" fill="#3157c9" font-size="140" font-weight="600" letter-spacing="-7">Gautam.</text>
-<path d="M72 496H1128" stroke="#dadde1"/><text x="72" y="550" fill="#59616d" font-size="22">University of Virginia · Master of Computer Science · 2027</text><text x="1128" y="550" text-anchor="end" fill="#3157c9" font-size="28" font-weight="600">sg.</text></g></svg>
+<text x="64" y="272" fill="#2c2c2a" font-family="Georgia, serif" font-size="140" font-weight="400" letter-spacing="-7">Shaury</text><text x="64" y="409" fill="#3157c9" font-family="Georgia, serif" font-style="italic" font-size="140" font-weight="400" letter-spacing="-7">Gautam</text>
+<path d="M72 496H1128" stroke="#dadde1"/><text x="72" y="550" fill="#59616d" font-size="22">University of Virginia · Master of Computer Science · 2027</text><text x="1128" y="550" text-anchor="end" fill="#3157c9" font-size="28" font-weight="600">hi ↗</text></g></svg>

@@ -1,6 +1,6 @@
 # Verification report
 
-Validated September 17, 2026 against the production build. Screenshots and measurements below were regenerated for the redesigned portfolio.
+Validated September 17, 2026 against the production build. Screenshots and measurements below were regenerated for the warmer, more personal redesign: serif details, softer colors, light humor, and fewer headline full stops.
 
 ## Automated checks
 
@@ -40,4 +40,6 @@ GitHub repository: https://github.com/shaury04/shaury04.github.io
 
 Production target: https://shaury04.github.io/
 
-Local verification is complete. Live deployment verification is recorded after the first successful workflow run.
+The first build and deployment succeeded on September 17, 2026. Subsequent pushes to `main` run the same validation and deployment workflow. See [deployment history](https://github.com/shaury04/shaury04.github.io/actions) for current status.
+
+The optional boredom link is intentionally hidden until its destination is supplied.

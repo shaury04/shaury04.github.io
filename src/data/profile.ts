@@ -29,15 +29,17 @@ export type Interest = {
 export const profile = {
   name: "Shaury Gautam",
   email: "shaury04@gmail.com",
-  headline: "Software engineering. Applied machine learning. A curiosity for both.",
+  headline: "Usually building something",
   introduction:
-    "I’m pursuing a Master of Computer Science at the University of Virginia, graduating in May 2027. I build ML platforms, ranking systems, and AI agents—with an emphasis on the software that makes them useful.",
-  roleFocus: "Seeking new graduate software engineering and applied ML/AI roles.",
+    "I’m a Master of Computer Science student at UVA, graduating in May 2027. I work on software and machine learning, from hotel search to AI agents to figuring out when a simulated engine might give up.",
+  roleFocus: "Looking for my next chapter in software engineering or applied ML",
   portrait: undefined as Photo | undefined,
+  // Set this when a game, video, or other worthwhile distraction is ready.
+  boredLink: undefined as string | undefined,
   interests: [
-    { name: "Basketball", description: "Time on the court." },
-    { name: "Pickleball", description: "A different kind of doubles." },
-    { name: "Coding for fun", description: "Following an idea, just to see where it goes." },
+    { name: "Basketball", description: "Away from the screen, onto the court" },
+    { name: "Pickleball", description: "Another good reason to close the laptop" },
+    { name: "Coding for fun", description: "Same laptop, fewer requirements" },
   ] satisfies Interest[] as Interest[],
   links: [
     { label: "GitHub", href: "https://github.com/shaury04" },

@@ -18,7 +18,7 @@ const socialImage = new URL(withBase("/og.png"), Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f8f8f5" />
+    <meta name="theme-color" content="#faf7f0" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
@@ -41,9 +41,9 @@ const socialImage = new URL(withBase("/og.png"), Astro.site);
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="shell header-inner">
-        <a class="wordmark" href={withBase("/")} aria-label="sg. — Shaury Gautam, home">sg<span aria-hidden="true">.</span></a>
+        <a class="wordmark" href={withBase("/")} aria-label="Shaury — home">Shaury<span class="wordmark-wave" aria-hidden="true">↗</span></a>
         <nav aria-label="Primary navigation">
-          <a href={withBase("/#work")}>Work</a><a href={withBase("/#experience")}>Experience</a><a href={withBase("/#about")}>About</a><a class="nav-contact" href={withBase("/#contact")}>Let’s connect <span aria-hidden="true">↗</span></a>
+          <a href={withBase("/#work")}>Work</a><a href={withBase("/#experience")}>Experience</a><a href={withBase("/#about")}>About</a>{profile.boredLink && <a class="bored-link" href={withBase(profile.boredLink)}>Click here if you’re bored <span aria-hidden="true">↝</span></a>}<a class="nav-contact" href={withBase("/#contact")}>Let’s connect <span aria-hidden="true">↗</span></a>
         </nav>
       </div>
     </header>
@@ -51,10 +51,10 @@ const socialImage = new URL(withBase("/og.png"), Astro.site);
     <footer class="site-footer" id="contact" aria-labelledby="contact-title">
       <div class="shell">
         <div class="footer-grid">
-          <div><p class="eyebrow">05 / Get in touch</p><h2 class="footer-heading" id="contact-title">Have something<br />in mind?</h2><p class="footer-copy">{profile.roleFocus}</p></div>
+          <div><p class="eyebrow">The inbox is open</p><h2 class="footer-heading" id="contact-title">Say hello<em> or send a good link</em></h2><p class="footer-copy">{profile.roleFocus}</p></div>
           <div class="footer-links"><a class="email-link" href={`mailto:${profile.email}`}>{profile.email} <span aria-hidden="true">↗</span></a><div class="social-links">{profile.links.map(link => <a href={link.href}>{link.label} <span aria-hidden="true">↗</span></a>)}</div></div>
         </div>
-        <div class="footer-meta"><span>© {new Date().getFullYear()} Shaury Gautam</span><a href={withBase("/#main-content")}>Back to top <span aria-hidden="true">↑</span></a></div>
+        <div class="footer-meta"><span>© {new Date().getFullYear()} Shaury Gautam</span><a href={withBase("/#main-content")}>Once more, from the top <span aria-hidden="true">↑</span></a></div>
       </div>
     </footer>
   </body>

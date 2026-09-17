@@ -14,12 +14,12 @@ const line = (key: "predictedRul" | "groundTruthRul") => records.map((record, i)
   <section class="hero shell" aria-labelledby="intro-title">
     <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Software engineering & applied ML</p>
     <div class="hero-grid">
-      <h1 id="intro-title">Shaury<br /><span>Gautam.</span></h1>
+      <div class="hero-name"><p class="hello">Hi, I’m</p><h1 id="intro-title">Shaury<br /><span>Gautam</span></h1><p class="margin-note">welcome to my little corner of the internet</p></div>
       <div class="hero-introduction">
         <h2>{profile.headline}</h2>
-        <p class="hero-copy">{profile.introduction}</p>
+        <p class="hero-copy">{profile.introduction}</p><p class="hero-aside">And sometimes I just code because an idea won’t leave me alone</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#work">Explore my work <span aria-hidden="true">↘</span></a>
+          <a class="button button-primary" href="#work">Take a look around <span aria-hidden="true">↘</span></a>
           <a class="button button-quiet" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -32,14 +32,14 @@ const line = (key: "predictedRul" | "groundTruthRul") => records.map((record, i)
 
   <section class="section shell" id="work" aria-labelledby="work-title">
     <div class="section-heading">
-      <p class="eyebrow">01 / Selected work</p>
-      <h2 id="work-title">From an experiment<br />to a working system.</h2>
+      <p class="eyebrow">Something I’ve been working on</p>
+      <h2 id="work-title">A little curiosity,<br /><em>a lot of experiments</em></h2>
     </div>
     <article class="project-card">
       <div class="project-copy">
         <p class="project-index">Independent project <span aria-hidden="true">·</span> NASA C-MAPSS</p>
-        <h3>Turbofan<br />early warning.</h3>
-        <p>How early can we predict an engine’s remaining useful life? A reproducible benchmark that turns sensor histories into predictions—and predictions into persistent warnings.</p>
+        <h3>Turbofan<br />early warning</h3>
+        <p>Can an engine give us a heads-up before it fails? I built a pipeline to estimate remaining useful life and tested when those estimates make a useful early warning.</p>
         <div class="tag-list" aria-label="Project technologies"><span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">PyTorch</span></div>
         <a class="text-link" href={withBase("/work/turbofan/")}>Inside the project <span aria-hidden="true">↗</span></a>
       </div>
@@ -58,11 +58,12 @@ const line = (key: "predictedRul" | "groundTruthRul") => records.map((record, i)
         <figcaption><span class="signal-key">XGBoost prediction</span><span>Simulated NASA test data</span></figcaption>
       </figure>
     </article>
+    <p class="project-aside">No actual jet engines were harmed in the making of this project</p>
     <div class="project-context"><span>265K sensor cycles</span><span>1,416 engine trajectories</span><span>4 operating / fault regimes</span><a href="https://github.com/shaury04/nasa">View source <span aria-hidden="true">↗</span></a></div>
   </section>
 
   <section class="section shell" id="experience" aria-labelledby="experience-title">
-    <div class="section-heading"><p class="eyebrow">02 / Experience</p><h2 id="experience-title">Built with teams.<br />Grounded in results.</h2></div>
+    <div class="section-heading"><p class="eyebrow">Where I’ve spent my time</p><h2 id="experience-title">Good teams,<br /><em>interesting problems</em></h2></div>
     <div class="experience-list">
       {profile.experience.map((item) => (
         <article class="experience-item">
@@ -75,22 +76,22 @@ const line = (key: "predictedRul" | "groundTruthRul") => records.map((record, i)
 
   <section class="section about-section" id="about" aria-labelledby="about-title">
     <div class="shell about-grid">
-      <div><p class="eyebrow">03 / A little about me</p><h2 id="about-title">Curious about models.<br /><span class="muted">Invested in the engineering.</span></h2>
+      <div><p class="eyebrow">A little more about me</p><h2 id="about-title">I like knowing<br /><em>how things work</em></h2>
         {profile.portrait && <img class="portrait" src={withBase(profile.portrait.src)} alt={profile.portrait.alt} width={profile.portrait.width} height={profile.portrait.height} loading="lazy" decoding="async" />}
       </div>
       <div class="about-copy">
-        <p>I’m Shaury, a computer science graduate student at UVA. My work sits at the intersection of software engineering and machine learning: building tools to compare ranking models, improving LLM pipelines, and evaluating predictive systems.</p>
-        <p>I’m interested in the whole path from an idea to something useful—the data, the model, the interface, and the way we measure whether it works.</p>
+        <p>I’m studying computer science at the University of Virginia, after completing my undergraduate degree at James Madison University. Along the way, I’ve worked on hotel ranking, LLM pipelines, and agents that navigate phone menus.</p>
+        <p>The part I enjoy is connecting the pieces: the data, the model, the interface, and the tests that tell us whether the whole thing actually works. I’m looking for a team where I can keep doing that and keep learning.</p>
         <div class="education-list">{profile.education.map(item => <article><p class="education-period">{item.period}</p><h3>{item.school}</h3><p>{item.degree}</p></article>)}</div>
       </div>
     </div>
   </section>
 
   <section class="section shell interests-section" aria-labelledby="interests-title">
-    <div class="section-heading"><p class="eyebrow">04 / Outside of work</p><h2 id="interests-title">Away from the task list.</h2></div>
-    <div class="interests-grid">{profile.interests.map((interest, index) => <article class="interest-item">
+    <div class="section-heading"><p class="eyebrow">Not everything needs a bullet on a résumé</p><h2 id="interests-title">Other ways I spend <em>too much time</em></h2></div>
+    <div class="interests-grid">{profile.interests.map((interest) => <article class="interest-item">
       {interest.photo && <img src={withBase(interest.photo.src)} alt={interest.photo.alt} width={interest.photo.width} height={interest.photo.height} loading="lazy" decoding="async" />}
-      <span class="interest-number" aria-hidden="true">0{index + 1}</span><h3>{interest.name}</h3><p>{interest.description}</p>
+      <h3>{interest.name}</h3><p>{interest.description}</p>
     </article>)}</div>
   </section>
 </BaseLayout>

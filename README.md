@@ -1,6 +1,6 @@
 # Shaury Gautam — Portfolio
 
-A professional, personal Astro portfolio for software engineering and applied ML roles. Built as a static site for `https://shaury04.github.io/`.
+A warm, personal Astro portfolio for software engineering and applied ML roles. Built as a static site for `https://shaury04.github.io/`.
 
 ## Development
 
@@ -25,6 +25,8 @@ Verification includes Astro diagnostics, unit tests, a `/portfolio/` prefix buil
 - Edit professional details, education, contact links, and interests in `src/data/profile.ts`.
 - Edit the NASA case study in `src/content/work/turbofan.md`.
 - Adjust shared design tokens and responsive styles in `src/styles/global.css`.
+
+Set `boredLink` in the profile to a game, video, or another destination when ready. The “Click here if you’re bored” navigation link stays hidden while the value is unset.
 
 Photos are optional. Add optimized images under `public/images/`, then set `portrait` or an interest’s `photo` to `{ src: "/images/filename.webp", alt: "Descriptive alternative text", width: 800, height: 1000 }`, using the image’s actual dimensions. Images render only when configured, with lazy loading and explicit dimensions. Interest photos use a 4:3 crop.
 
