@@ -1,0 +1,211 @@
+---
+import rawData from "../data/nasa-demo.json";
+import { currentWarningStatus, validateNasaDemo, visibleRecords } from "../data/nasaDemo";
+
+const data = validateNasaDemo(rawData);
+const initialTrajectory = data.trajectories[0];
+const initialIndex = initialTrajectory.firstConfirmedCycle
+  ? initialTrajectory.records.findIndex((record) => record.cycle === initialTrajectory.firstConfirmedCycle)
+  : initialTrajectory.records.length - 1;
+const initialRecords = visibleRecords(initialTrajectory, initialIndex);
+const initialRecord = initialRecords.at(-1)!;
+const initialStatus = currentWarningStatus(
+  initialTrajectory,
+  initialIndex,
+  data.warningRule.horizonCycles,
+  data.warningRule.consecutivePredictions,
+);
+const width = 760;
+const height = 320;
+const padX = 50;
+const padTop = 24;
+const padBottom = 44;
+const plotWidth = width - padX - 20;
+const plotHeight = height - padTop - padBottom;
+const maxRul = 250;
+const y = (value: number) => padTop + plotHeight - (Math.min(Math.max(value, 0), maxRul) / maxRul) * plotHeight;
+const points = (records: typeof initialRecords, key: "predictedRul" | "groundTruthRul") => records.map((record, index) => {
+  const x = padX + (records.length === 1 ? 0 : (index / (records.length - 1)) * plotWidth);
+  return `${x.toFixed(2)},${y(record[key] ?? 0).toFixed(2)}`;
+}).join(" ");
+const statusLabel = initialStatus.state === "confirmed" ? "Confirmed warning" : initialStatus.state === "pending" ? `Pending · ${initialStatus.streak}/3` : "No warning";
+---
+
+<section class="demo-section" aria-labelledby="demo-title">
+  <div class="figure-heading">
+    <div><p class="eyebrow">Interactive evaluation</p><h2 id="demo-title">Watch a prediction become a warning.</h2></div>
+    <p>Explore recorded predictions for three unseen test engines. Move through the observed cycles to see when the warning rule is met.</p>
+  </div>
+
+  <div class="demo-shell" data-nasa-demo data-initial-index={initialIndex}>
+    <script type="application/json" data-demo-data set:html={JSON.stringify(data)} is:inline />
+    <noscript><p class="demo-note">This is a recorded snapshot of FD001 engine 52. Enable JavaScript to explore other engines and cycles, or use the data table below.</p></noscript>
+    <div class="demo-controls">
+      <label>
+        <span>Test engine</span>
+        <select data-engine disabled>
+          {data.trajectories.map((trajectory) => (
+            <option value={trajectory.id}>{trajectory.datasetSubset} · Engine {trajectory.engineId} · {trajectory.outcome}</option>
+          ))}
+        </select>
+      </label>
+      <label class="cycle-control">
+        <span>Observed cycle <output data-cycle-output>{initialRecord.cycle}</output></span>
+        <input data-cycle disabled type="range" min="0" max={initialTrajectory.records.length - 1} value={initialIndex} step="1" />
+      </label>
+      <div class="step-buttons" aria-label="Cycle controls">
+        <button type="button" disabled data-previous>Previous</button>
+        <button type="button" disabled data-next>Next</button>
+        <button type="button" disabled data-reset>Reset</button>
+      </div>
+    </div>
+
+    <div class="demo-readout" aria-live="polite" aria-atomic="true">
+      <div><span>Predicted RUL</span><strong data-prediction>{initialRecord.predictedRul.toFixed(1)} cycles</strong></div>
+      <div><span>Retrospective truth</span><strong data-truth>{initialRecord.groundTruthRul?.toFixed(1)} cycles</strong></div>
+      <div class={`warning-readout ${initialStatus.state}`} data-warning><span>Warning state</span><strong data-warning-label>{statusLabel}</strong><small data-warning-detail>{initialStatus.state === "confirmed" ? "At least 3 consecutive predictions at or below 50." : "The confirmation rule has not been met."}</small></div>
+    </div>
+
+    <div class="demo-chart-wrap">
+      <svg data-chart viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby="demo-chart-title demo-chart-desc">
+        <title id="demo-chart-title">Remaining useful life through the selected cycle</title>
+        <desc id="demo-chart-desc" data-chart-desc>Predicted and retrospective remaining useful life for FD001 engine 52 through cycle {initialRecord.cycle}.</desc>
+        {[0, 50, 125, 250].map((tick) => <g><line x1={padX} y1={y(tick)} x2={width - 20} y2={y(tick)} /><text x={padX - 10} y={y(tick) + 4}>{tick}</text></g>)}
+        <line class="threshold-line" x1={padX} y1={y(50)} x2={width - 20} y2={y(50)} />
+        <polyline data-truth-line class="truth-line" points={points(initialRecords, "groundTruthRul")} />
+        <polyline data-predicted-line class="predicted-line" points={points(initialRecords, "predictedRul")} />
+        <circle data-current-point cx={width - 20} cy={y(initialRecord.predictedRul)} r="6" />
+        <text class="axis-title" x="14" y="18">RUL cycles</text>
+        <text class="axis-title" x={width - 116} y={height - 8}>Observed cycles</text>
+      </svg>
+      <div class="chart-legend"><span class="predicted-key">Prediction</span><span class="truth-key">Retrospective truth</span><span class="threshold-key">50-cycle horizon</span></div>
+    </div>
+
+    <p class="demo-note" data-selection-note>{initialTrajectory.selectionNote} Ground truth is reconstructed from the official endpoint label and shown only as retrospective reference.</p>
+
+    <details class="data-table">
+      <summary>View accessible data table through the selected cycle</summary>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Cycle</th><th>Predicted RUL</th><th>Retrospective RUL</th><th>Warning</th></tr></thead>
+          <tbody data-table-body>
+            {initialRecords.map((record) => <tr><th>{record.cycle}</th><td>{record.predictedRul.toFixed(1)}</td><td>{record.groundTruthRul?.toFixed(1)}</td><td>{record.warningState ? "Confirmed" : "No"}</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </div>
+</section>
+
+<script>
+  import { currentWarningStatus, validateNasaDemo, visibleRecords } from "../data/nasaDemo";
+
+  const root = document.querySelector<HTMLElement>("[data-nasa-demo]");
+  if (root) {
+    const payload = root.querySelector<HTMLScriptElement>("[data-demo-data]");
+    const select = root.querySelector<HTMLSelectElement>("[data-engine]");
+    const slider = root.querySelector<HTMLInputElement>("[data-cycle]");
+    const previous = root.querySelector<HTMLButtonElement>("[data-previous]");
+    const next = root.querySelector<HTMLButtonElement>("[data-next]");
+    const reset = root.querySelector<HTMLButtonElement>("[data-reset]");
+    const cycleOutput = root.querySelector<HTMLOutputElement>("[data-cycle-output]");
+    const prediction = root.querySelector<HTMLElement>("[data-prediction]");
+    const truth = root.querySelector<HTMLElement>("[data-truth]");
+    const warning = root.querySelector<HTMLElement>("[data-warning]");
+    const warningLabel = root.querySelector<HTMLElement>("[data-warning-label]");
+    const warningDetail = root.querySelector<HTMLElement>("[data-warning-detail]");
+    const predictedLine = root.querySelector<SVGPolylineElement>("[data-predicted-line]");
+    const truthLine = root.querySelector<SVGPolylineElement>("[data-truth-line]");
+    const currentPoint = root.querySelector<SVGCircleElement>("[data-current-point]");
+    const chartDescription = root.querySelector<SVGDescElement>("[data-chart-desc]");
+    const note = root.querySelector<HTMLElement>("[data-selection-note]");
+    const tableBody = root.querySelector<HTMLTableSectionElement>("[data-table-body]");
+
+    if (payload && select && slider && previous && next && reset && cycleOutput && prediction && truth && warning && warningLabel && warningDetail && predictedLine && truthLine && currentPoint && chartDescription && note && tableBody) {
+      const data = validateNasaDemo(JSON.parse(payload.textContent || "{}"));
+      let trajectoryIndex = 0;
+      let recordIndex = Number(root.dataset.initialIndex || 0);
+      const width = 760;
+      const height = 320;
+      const padX = 50;
+      const padTop = 24;
+      const padBottom = 44;
+      const plotWidth = width - padX - 20;
+      const plotHeight = height - padTop - padBottom;
+      const maxRul = 250;
+      const y = (value: number) => padTop + plotHeight - (Math.min(Math.max(value, 0), maxRul) / maxRul) * plotHeight;
+      const linePoints = (records: ReturnType<typeof visibleRecords>, key: "predictedRul" | "groundTruthRul") => records.map((record, index) => {
+        const x = padX + (records.length === 1 ? 0 : (index / (records.length - 1)) * plotWidth);
+        return `${x.toFixed(2)},${y(record[key] ?? 0).toFixed(2)}`;
+      }).join(" ");
+      const initialFor = (index: number) => {
+        const trajectory = data.trajectories[index];
+        return trajectory.firstConfirmedCycle
+          ? trajectory.records.findIndex((record) => record.cycle === trajectory.firstConfirmedCycle)
+          : trajectory.records.length - 1;
+      };
+
+      const render = () => {
+        const trajectory = data.trajectories[trajectoryIndex];
+        const visible = visibleRecords(trajectory, recordIndex);
+        const record = visible.at(-1)!;
+        const status = currentWarningStatus(
+          trajectory,
+          recordIndex,
+          data.warningRule.horizonCycles,
+          data.warningRule.consecutivePredictions,
+        );
+        slider.max = String(trajectory.records.length - 1);
+        slider.value = String(recordIndex);
+        cycleOutput.value = String(record.cycle);
+        cycleOutput.textContent = String(record.cycle);
+        prediction.textContent = `${record.predictedRul.toFixed(1)} cycles`;
+        truth.textContent = `${record.groundTruthRul?.toFixed(1)} cycles`;
+        warning.className = `warning-readout ${status.state}`;
+        warningLabel.textContent = status.state === "confirmed" ? "Confirmed warning" : status.state === "pending" ? `Pending · ${status.streak}/${data.warningRule.consecutivePredictions}` : "No warning";
+        warningDetail.textContent = status.state === "confirmed"
+          ? `At least ${data.warningRule.consecutivePredictions} consecutive predictions at or below ${data.warningRule.horizonCycles}.`
+          : status.state === "pending"
+            ? `${status.streak} consecutive prediction${status.streak === 1 ? "" : "s"} at or below ${data.warningRule.horizonCycles}; ${data.warningRule.consecutivePredictions} required.`
+            : "The confirmation rule has not been met.";
+        previous.disabled = recordIndex === 0;
+        next.disabled = recordIndex === trajectory.records.length - 1;
+        predictedLine.setAttribute("points", linePoints(visible, "predictedRul"));
+        truthLine.setAttribute("points", linePoints(visible, "groundTruthRul"));
+        currentPoint.setAttribute("cx", String(visible.length === 1 ? padX : width - 20));
+        currentPoint.setAttribute("cy", String(y(record.predictedRul)));
+        chartDescription.textContent = `Predicted and retrospective remaining useful life for ${trajectory.datasetSubset} engine ${trajectory.engineId} through cycle ${record.cycle}.`;
+        note.textContent = `${trajectory.selectionNote} Ground truth is reconstructed from the official endpoint label and shown only as retrospective reference.`;
+        tableBody.replaceChildren(...visible.map((row) => {
+          const tr = document.createElement("tr");
+          const cycle = document.createElement("th");
+          cycle.scope = "row";
+          cycle.textContent = String(row.cycle);
+          const predicted = document.createElement("td");
+          predicted.textContent = row.predictedRul.toFixed(1);
+          const actual = document.createElement("td");
+          actual.textContent = row.groundTruthRul?.toFixed(1) ?? "Not available";
+          const alert = document.createElement("td");
+          alert.textContent = row.warningState ? "Confirmed" : "No";
+          tr.append(cycle, predicted, actual, alert);
+          return tr;
+        }));
+      };
+
+      select.disabled = false;
+      slider.disabled = false;
+      reset.disabled = false;
+      render();
+
+      select.addEventListener("change", () => {
+        trajectoryIndex = data.trajectories.findIndex((trajectory) => trajectory.id === select.value);
+        recordIndex = initialFor(trajectoryIndex);
+        render();
+      });
+      slider.addEventListener("input", () => { recordIndex = Number(slider.value); render(); });
+      previous.addEventListener("click", () => { recordIndex = Math.max(0, recordIndex - 1); render(); });
+      next.addEventListener("click", () => { recordIndex = Math.min(data.trajectories[trajectoryIndex].records.length - 1, recordIndex + 1); render(); });
+      reset.addEventListener("click", () => { recordIndex = 0; render(); });
+    }
+  }
+</script>

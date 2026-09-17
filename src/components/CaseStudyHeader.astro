@@ -1,0 +1,30 @@
+---
+import { withBase } from "../utils/paths";
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  role: string;
+  period: string;
+  stack: string[];
+  repository?: string;
+}
+
+const { title, description, eyebrow, role, period, stack, repository } = Astro.props;
+---
+
+<header class="case-hero shell">
+  <a class="back-link" href={withBase("/#work")}><span aria-hidden="true">←</span> Selected work</a>
+  <p class="eyebrow">{eyebrow}</p>
+  <h1>{title}</h1>
+  <p class="case-deck">{description}</p>
+  <div class="case-meta">
+    <dl>
+      <div><dt>Contribution</dt><dd>{role}</dd></div>
+      <div><dt>Period</dt><dd>{period}</dd></div>
+    </dl>
+    <ul aria-label="Technology used">{stack.map((item) => <li>{item}</li>)}</ul>
+  </div>
+  {repository && <a class="button" href={repository}>View public repository <span aria-hidden="true">↗</span></a>}
+</header>

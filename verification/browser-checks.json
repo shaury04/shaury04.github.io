@@ -1,0 +1,54 @@
+{
+  "base": "http://127.0.0.1:4321",
+  "checkedAt": "2026-09-17T17:28:43.545Z",
+  "layouts": [
+    {
+      "width": 375,
+      "route": "/",
+      "overflow": false
+    },
+    {
+      "width": 375,
+      "route": "/work/turbofan/",
+      "overflow": false
+    },
+    {
+      "width": 375,
+      "route": "/404.html",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "route": "/",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "route": "/work/turbofan/",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "route": "/404.html",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/work/turbofan/",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/404.html",
+      "overflow": false
+    }
+  ],
+  "demo": "confirmed, pending, missed, reset, previous/next bounds, engine selection, slider and visible rows passed",
+  "accessibility": "keyboard skip link, reduced motion, no-JS narrative and 176-row table passed",
+  "errors": []
+}

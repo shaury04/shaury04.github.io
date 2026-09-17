@@ -1,0 +1,44 @@
+---
+import { getEntry, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CaseStudyHeader from "../../components/CaseStudyHeader.astro";
+import MetricBars from "../../components/MetricBars.astro";
+import NasaDemo from "../../components/NasaDemo.astro";
+import rawDemoData from "../../data/nasa-demo.json";
+import { validateNasaDemo } from "../../data/nasaDemo";
+import { withBase } from "../../utils/paths";
+
+const entry = await getEntry("work", "turbofan");
+if (!entry) throw new Error("Turbofan content was not found");
+const { Content } = await render(entry);
+const demoData = validateNasaDemo(rawDemoData);
+---
+
+<BaseLayout title={`${entry.data.title} — Shaury Gautam`} description={entry.data.description}>
+  <CaseStudyHeader {...entry.data} repository="https://github.com/shaury04/nasa" />
+
+  <section class="case-strip">
+    <div class="shell metric-strip">
+      <div><strong>265K</strong><span>sensor cycles</span></div>
+      <div><strong>1,416</strong><span>simulated trajectories</span></div>
+      <div><strong>52%</strong><span>lower FD001 endpoint MAE</span></div>
+      <div><strong>3×</strong><span>predictions to confirm</span></div>
+    </div>
+  </section>
+
+  <div class="shell case-content">
+    <article class="prose"><Content /></article>
+    <MetricBars />
+    <NasaDemo />
+    <aside class="provenance-note">
+      <p class="eyebrow">Data provenance</p>
+      <p>The interactive examples were exported from XGBoost test predictions at source commit <code>{demoData.provenance.sourceCommit.slice(0, 8)}</code>. The complete project, evaluation code, aggregate metrics, and limitations are available in the public repository.</p>
+      <a class="text-link" href={demoData.provenance.sourceRepository}>Inspect the source <span aria-hidden="true">↗</span></a>
+    </aside>
+    <aside class="case-next">
+      <p class="eyebrow">More about me</p>
+      <h2>The work behind the projects.</h2>
+      <a class="text-link" href={withBase("/#experience")}>Explore my experience <span aria-hidden="true">→</span></a>
+    </aside>
+  </div>
+</BaseLayout>
