@@ -18,7 +18,7 @@ const socialImage = new URL(withBase("/og.png"), Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#faf7f0" />
+    <meta name="theme-color" content="#fcf5e9" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
@@ -43,7 +43,7 @@ const socialImage = new URL(withBase("/og.png"), Astro.site);
       <div class="shell header-inner">
         <a class="wordmark" href={withBase("/")} aria-label="Shaury — home">Shaury<span class="wordmark-wave" aria-hidden="true">↗</span></a>
         <nav aria-label="Primary navigation">
-          <a href={withBase("/#work")}>Work</a><a href={withBase("/#experience")}>Experience</a><a href={withBase("/#about")}>About</a>{profile.boredLink && <a class="bored-link" href={withBase(profile.boredLink)}>Click here if you’re bored <span aria-hidden="true">↝</span></a>}<a class="nav-contact" href={withBase("/#contact")}>Let’s connect <span aria-hidden="true">↗</span></a>
+          <a href={withBase("/#education")}>Education</a><a href={withBase("/#experience")}>Experience</a><a href={withBase("/#work")}>Projects</a><a href={withBase("/#about")}>About</a>{profile.boredLink && <a class="bored-link" href={withBase(profile.boredLink)}>Click here if you’re bored <span aria-hidden="true">↝</span></a>}<a class="nav-contact" href={withBase("/#contact")}>Let’s connect <span aria-hidden="true">↗</span></a>
         </nav>
       </div>
     </header>

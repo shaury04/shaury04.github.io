@@ -19,7 +19,7 @@ const line = (key: "predictedRul" | "groundTruthRul") => records.map((record, i)
         <h2>{profile.headline}</h2>
         <p class="hero-copy">{profile.introduction}</p><p class="hero-aside">And sometimes I just code because an idea won’t leave me alone</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#work">Take a look around <span aria-hidden="true">↘</span></a>
+          <a class="button button-primary" href="#education">Take a look around <span aria-hidden="true">↘</span></a>
           <a class="button button-quiet" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -27,6 +27,31 @@ const line = (key: "predictedRul" | "groundTruthRul") => records.map((record, i)
     <div class="hero-footnote">
       <span>University of Virginia <span class="separator" aria-hidden="true">/</span> Class of 2027</span>
       <span>Open to new graduate SWE & ML opportunities</span>
+    </div>
+  </section>
+
+  <section class="section shell education-section" id="education" aria-labelledby="education-title">
+    <div class="section-heading"><p class="eyebrow">Education</p><h2 id="education-title">Still learning,<br /><em>always curious</em></h2></div>
+    <div class="education-list">
+      {profile.education.map(item => (
+        <article class="education-item">
+          <div class="education-logo"><img src={withBase(item.logo.src)} alt={item.logo.alt} width={item.logo.width} height={item.logo.height} loading="lazy" decoding="async" /></div>
+          <div class="education-details"><h3>{item.school}</h3><p class="education-degree">{item.degree}</p><p class="education-location">{item.location}</p></div>
+          <p class="education-period">{item.period}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section shell" id="experience" aria-labelledby="experience-title">
+    <div class="section-heading"><p class="eyebrow">Where I’ve spent my time</p><h2 id="experience-title">Good teams,<br /><em>interesting problems</em></h2></div>
+    <div class="experience-list">
+      {profile.experience.map((item) => (
+        <article class="experience-item">
+          <div class="experience-company"><h3>{item.company}</h3><p class="experience-role">{item.role}</p><p class="experience-period">{item.period}</p><p class="experience-location">{item.location}</p></div>
+          <div class="experience-details"><p>{item.summary}</p><ul>{item.highlights.map(highlight => <li>{highlight}</li>)}</ul><div class="tag-list">{item.skills.map(skill => <span class="tag">{skill}</span>)}</div></div>
+        </article>
+      ))}
     </div>
   </section>
 
@@ -62,18 +87,6 @@ const line = (key: "predictedRul" | "groundTruthRul") => records.map((record, i)
     <div class="project-context"><span>265K sensor cycles</span><span>1,416 engine trajectories</span><span>4 operating / fault regimes</span><a href="https://github.com/shaury04/nasa">View source <span aria-hidden="true">↗</span></a></div>
   </section>
 
-  <section class="section shell" id="experience" aria-labelledby="experience-title">
-    <div class="section-heading"><p class="eyebrow">Where I’ve spent my time</p><h2 id="experience-title">Good teams,<br /><em>interesting problems</em></h2></div>
-    <div class="experience-list">
-      {profile.experience.map((item) => (
-        <article class="experience-item">
-          <div class="experience-company"><h3>{item.company}</h3><p class="experience-role">{item.role}</p><p class="experience-period">{item.period}</p><p class="experience-location">{item.location}</p></div>
-          <div class="experience-details"><p>{item.summary}</p><ul>{item.highlights.map(highlight => <li>{highlight}</li>)}</ul><div class="tag-list">{item.skills.map(skill => <span class="tag">{skill}</span>)}</div></div>
-        </article>
-      ))}
-    </div>
-  </section>
-
   <section class="section about-section" id="about" aria-labelledby="about-title">
     <div class="shell about-grid">
       <div><p class="eyebrow">A little more about me</p><h2 id="about-title">I like knowing<br /><em>how things work</em></h2>
@@ -82,7 +95,6 @@ const line = (key: "predictedRul" | "groundTruthRul") => records.map((record, i)
       <div class="about-copy">
         <p>I’m studying computer science at the University of Virginia, after completing my undergraduate degree at James Madison University. Along the way, I’ve worked on hotel ranking, LLM pipelines, and agents that navigate phone menus.</p>
         <p>The part I enjoy is connecting the pieces: the data, the model, the interface, and the tests that tell us whether the whole thing actually works. I’m looking for a team where I can keep doing that and keep learning.</p>
-        <div class="education-list">{profile.education.map(item => <article><p class="education-period">{item.period}</p><h3>{item.school}</h3><p>{item.degree}</p></article>)}</div>
       </div>
     </div>
   </section>

@@ -48,12 +48,14 @@ export const profile = {
   education: [
     {
       school: "University of Virginia",
+      logo: { src: "/images/uva-logo.svg", alt: "University of Virginia logo", width: 218, height: 53 },
       degree: "Master of Computer Science",
       period: "August 2025 – May 2027",
       location: "Charlottesville, VA",
     },
     {
       school: "James Madison University",
+      logo: { src: "/images/jmu-logo-web.png", alt: "James Madison University logo", width: 700, height: 97 },
       degree: "Bachelor of Science in Computer Science",
       period: "August 2022 – May 2025",
       location: "Harrisonburg, VA",

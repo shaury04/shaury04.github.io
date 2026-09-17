@@ -22,6 +22,10 @@ Verification includes Astro diagnostics, unit tests, a `/portfolio/` prefix buil
 
 ## Content and photos
 
+The homepage follows résumé order after the introduction: Education → Experience → Projects, then About, interests, and contact. The palette uses terracotta accents, amber details, and soft cream backgrounds.
+
+School logos retain their original university colors. Sources: [UVA Brand](https://brand.virginia.edu/design-assets/logos/university-logos) and [JMU Brand](https://www.jmu.edu/identity/our-style/logo.shtml). The UVA SVG is from its brand-site footer; the JMU institutional horizontal logo has transparent outer padding trimmed for display, with the complete mark preserved.
+
 - Edit professional details, education, contact links, and interests in `src/data/profile.ts`.
 - Edit the NASA case study in `src/content/work/turbofan.md`.
 - Adjust shared design tokens and responsive styles in `src/styles/global.css`.

@@ -1,6 +1,6 @@
 # Verification report
 
-Validated September 17, 2026 against the production build. Screenshots and measurements below were regenerated for the warmer, more personal redesign: serif details, softer colors, light humor, and fewer headline full stops.
+Validated September 17, 2026 against the production build. Screenshots and measurements below were regenerated for the warmer, more personal redesign: terracotta and amber accents, soft cream backgrounds, university logos, résumé section order, and the retained light humor.
 
 ## Automated checks
 
@@ -26,6 +26,7 @@ Measured using Lighthouse against the local production preview in headless Chrom
 - Demo checks cover confirmed, pending, and missed outcomes, engine selection, reset, previous/next boundary states, and slider changes. Table records are limited to the selected cycle.
 - With JavaScript disabled, the narrative, initial chart, and 176-row table remain available; inactive controls are disabled and a snapshot explanation is shown.
 - Desktop/mobile homepage, case-study, and demo screenshots visually reviewed.
+- Education appears before Experience and Projects. Both official university logos load correctly, with UVA before JMU; the navigation follows the same order.
 
 ## Screenshots
 
