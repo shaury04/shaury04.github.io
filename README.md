@@ -32,7 +32,9 @@ School logos retain their original university colors. Sources: [UVA Brand](https
 
 Set `boredLink` in the profile to a game, video, or another destination when ready. The “Click here if you’re bored” navigation link stays hidden while the value is unset.
 
-Photos are optional. Add optimized images under `public/images/`, then set `portrait` or an interest’s `photo` to `{ src: "/images/filename.webp", alt: "Descriptive alternative text", width: 800, height: 1000 }`, using the image’s actual dimensions. Images render only when configured, with lazy loading and explicit dimensions. Interest photos use a 4:3 crop.
+Four personal photos appear in About and Outside of Work. Their data lives in `portrait` and `photos` in `src/data/profile.ts`. Browser-ready WebP copies are under `public/images/personal/`, at 560px and 1120px widths. Images preserve the full frame and orientation, include descriptive alternative text and dimensions, and load lazily with responsive sources. Published files omit source EXIF/XMP metadata; the original files are not committed.
+
+Keep the copy straightforward and personal. Do not add jokes, humorous captions, or playful asides.
 
 The original résumé and phone number are intentionally excluded. PDF files are ignored by Git, and the build refuses to publish any PDF. Employer work appears only in Experience; do not add private code, internal screenshots, or unsupported production or revenue claims.
 

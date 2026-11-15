@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-15",
+  "base": "http://127.0.0.1:4321",
+  "checks": [
+    {
+      "width": 375,
+      "route": "/",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "route": "/work/turbofan/",
+      "passed": true
+    },
+    {
+      "width": 375,
+      "route": "/404.html",
+      "passed": true
+    },
+    {
+      "width": 768,
+      "route": "/",
+      "passed": true
+    },
+    {
+      "width": 768,
+      "route": "/work/turbofan/",
+      "passed": true
+    },
+    {
+      "width": 768,
+      "route": "/404.html",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "route": "/",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "route": "/work/turbofan/",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "route": "/404.html",
+      "passed": true
+    }
+  ],
+  "photos": "All four original photos render in correct orientation with full frames; responsive sources loaded",
+  "copy": "Humorous asides removed",
+  "errors": []
+}

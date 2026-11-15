@@ -6,7 +6,7 @@ import "../styles/global.css";
 interface Props { title?: string; description?: string; noindex?: boolean; }
 const {
   title = "Shaury Gautam — Software Engineering & Applied ML",
-  description = "UVA Master of Computer Science student graduating in May 2027. Software engineering, applied machine learning, and a curiosity for both. Explore Shaury Gautam’s work.",
+  description = "UVA Master of Computer Science student graduating in May 2027. Explore Shaury Gautam’s experience in software engineering and applied machine learning.",
   noindex = false,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -51,10 +51,10 @@ const socialImage = new URL(withBase("/og.png"), Astro.site);
     <footer class="site-footer" id="contact" aria-labelledby="contact-title">
       <div class="shell">
         <div class="footer-grid">
-          <div><p class="eyebrow">The inbox is open</p><h2 class="footer-heading" id="contact-title">Say hello<em> or send a good link</em></h2><p class="footer-copy">{profile.roleFocus}</p></div>
+          <div><p class="eyebrow">Contact</p><h2 class="footer-heading" id="contact-title">Get <em>in touch</em></h2><p class="footer-copy">{profile.roleFocus}</p></div>
           <div class="footer-links"><a class="email-link" href={`mailto:${profile.email}`}>{profile.email} <span aria-hidden="true">↗</span></a><div class="social-links">{profile.links.map(link => <a href={link.href}>{link.label} <span aria-hidden="true">↗</span></a>)}</div></div>
         </div>
-        <div class="footer-meta"><span>© {new Date().getFullYear()} Shaury Gautam</span><a href={withBase("/#main-content")}>Once more, from the top <span aria-hidden="true">↑</span></a></div>
+        <div class="footer-meta"><span>© {new Date().getFullYear()} Shaury Gautam</span><a href={withBase("/#main-content")}>Back to top <span aria-hidden="true">↑</span></a></div>
       </div>
     </footer>
   </body>

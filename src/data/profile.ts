@@ -16,6 +16,7 @@ export type Experience = {
 export type Photo = {
   src: string;
   alt: string;
+  smallSrc?: string;
   width: number;
   height: number;
 };
@@ -29,17 +30,28 @@ export type Interest = {
 export const profile = {
   name: "Shaury Gautam",
   email: "shaury04@gmail.com",
-  headline: "Usually building something",
+  headline: "Building software and ML systems",
   introduction:
-    "I’m a Master of Computer Science student at UVA, graduating in May 2027. I work on software and machine learning, from hotel search to AI agents to figuring out when a simulated engine might give up.",
-  roleFocus: "Looking for my next chapter in software engineering or applied ML",
-  portrait: undefined as Photo | undefined,
-  // Set this when a game, video, or other worthwhile distraction is ready.
+    "I’m a Master of Computer Science student at UVA, graduating in May 2027. My work spans ML platforms, search ranking, predictive maintenance, and AI agents.",
+  roleFocus: "Open to new graduate roles in software engineering and applied ML",
+  portrait: {
+    src: "/images/personal/with-dogs-1120.webp",
+    smallSrc: "/images/personal/with-dogs-560.webp",
+    alt: "Relaxing on a couch with two dogs",
+    width: 1120,
+    height: 1493,
+  } as Photo,
+  photos: [
+    { src: "/images/personal/gym-1120.webp", smallSrc: "/images/personal/gym-560.webp", alt: "Mirror photo at the gym", caption: "At the gym", width: 1120, height: 1991 },
+    { src: "/images/personal/friends-1120.webp", smallSrc: "/images/personal/friends-560.webp", alt: "A group of friends together in costumes", caption: "With friends", width: 1120, height: 1493 },
+    { src: "/images/personal/dinner-1120.webp", smallSrc: "/images/personal/dinner-560.webp", alt: "Friends gathered around a restaurant table", caption: "Dinner with friends", width: 1120, height: 1493 },
+  ],
+  // Set this when a game, video, or other destination is ready.
   boredLink: undefined as string | undefined,
   interests: [
-    { name: "Basketball", description: "Away from the screen, onto the court" },
-    { name: "Pickleball", description: "Another good reason to close the laptop" },
-    { name: "Coding for fun", description: "Same laptop, fewer requirements" },
+    { name: "Basketball", description: "Playing basketball" },
+    { name: "Pickleball", description: "Playing pickleball" },
+    { name: "Coding for fun", description: "Exploring ideas through personal projects" },
   ] satisfies Interest[] as Interest[],
   links: [
     { label: "GitHub", href: "https://github.com/shaury04" },
