@@ -26,28 +26,24 @@ The homepage follows résumé order after the introduction: Education → Experi
 
 School logos retain their original university colors. Sources: [UVA Brand](https://brand.virginia.edu/design-assets/logos/university-logos) and [JMU Brand](https://www.jmu.edu/identity/our-style/logo.shtml). The UVA SVG is from its brand-site footer; the JMU institutional horizontal logo has transparent outer padding trimmed for display, with the complete mark preserved.
 
-- Edit professional details, education, contact links, and interests in `src/data/profile.ts`.
-- Edit the NASA case study in `src/content/work/turbofan.md`.
+- Edit professional details, education, projects, contact links, and interests in `src/data/profile.ts`.
 - Adjust shared design tokens and responsive styles in `src/styles/global.css`.
 
-Four personal photos appear together in Outside of work, in four columns on desktop and two on mobile. Their data lives in `photos` in `src/data/profile.ts`. Browser-ready WebP copies are under `public/images/personal/`, at 560px and 1120px widths. Images preserve the full frame and orientation inside consistent portrait frames, include descriptive alternative text and dimensions, and load lazily with responsive sources. Published files omit source EXIF/XMP metadata; the original files are not committed.
+The dog photo sits beside the introduction on desktop/tablet and below it on mobile. The other three photos appear in Outside of work. Their data lives in `portrait` and `photos` in `src/data/profile.ts`. Browser-ready WebP copies are under `public/images/personal/`, at 560px and 1120px widths. Images preserve the full frame and orientation, with descriptive alternative text and dimensions. The introduction photo loads eagerly; gallery images load lazily. Published files omit source EXIF/XMP metadata; originals are not committed.
 
 Keep the copy straightforward and personal. Do not add jokes, humorous captions, or playful asides.
 
 The original résumé and phone number are intentionally excluded. When the cleaned public résumé is supplied, place it at `public/resume.pdf`, add an exception for that exact file to `.gitignore`, and set `profile.resume` to `/resume.pdf`. A base-aware “Résumé (PDF)” link will then appear beside the introduction actions. Until then, the link is absent. The build permits only that exact PDF path and validates that any résumé link points to an existing file. Employer work appears only in Experience; do not add private code, internal screenshots, or unsupported production or revenue claims.
 
-## NASA data
+## Projects and source evidence
 
-The interactive demo contains three recorded XGBoost test trajectories; no model runs in the browser. Its source repository and commit are included in `src/data/nasa-demo.json` and displayed on the case study. With JavaScript disabled, the initial chart, narrative, and accessible data table remain available.
+Projects are short homepage entries with direct repository links. The retired `/work/turbofan/` URL redirects to the homepage Projects section, including on prefixed deployments. NASA demo components, data, and tests remain in the source tree as historical implementation material, but are not included in the published site.
 
-To regenerate from the original NASA checkout:
+- [Ruby spreadsheet](https://github.com/shaury04/spreadsheet-ruby): the terminal interface, parser, and grammar establish formula editing, cell references, range functions, loops, and conditionals.
+- [ROMS](https://github.com/shaury04/ROMS): the README identifies the team project; Flask routes implement inventory editing. [SQL views](https://github.com/shaury04/ROMS/blob/main/database/pgsql/views.sql) attribute the profitability and sales-by-day reports to Shaury. Do not imply solo authorship or production adoption.
+- [NASA benchmark](https://github.com/shaury04/nasa): described as a comparison on simulated engine data, not operational aircraft telemetry or a NASA role.
 
-```sh
-python3 scripts/export_nasa_demo.py --source /path/to/nasa
-npm test
-```
-
-The exporter checks the source revision and requires locally generated prediction artifacts. Do not substitute illustrative or fabricated records.
+Repository source was reviewed November 16, 2026. This was a content review, not a runtime certification of the linked applications.
 
 ## GitHub Pages
 

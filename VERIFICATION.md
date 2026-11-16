@@ -1,40 +1,39 @@
 # Verification report
 
-Validated November 16, 2026 against the production build for the cohesive homepage redesign.
+Validated November 16, 2026 after adding the Ruby spreadsheet and ROMS entries, shortening Turbofan, and moving the dog photo beside the introduction.
 
 ## Automated checks
 
 - Astro diagnostics: 0 errors, 0 warnings, 0 hints.
-- Vitest: all 8 tests passed across 2 files.
-- Root and `/portfolio/` builds: 3 pages generated, internal links and assets verified.
-- No PDFs are included in the output. The optional résumé link is absent until the cleaned PDF is supplied; only the exact future `resume.pdf` path is permitted by the build checker.
-- The retired navigation feature and its configuration/styles are removed. Repeated hobby descriptions, photo captions, and the duplicate biography are removed.
+- Vitest: all 8 existing tests passed across 2 files.
+- Root and `/portfolio/` builds: homepage, 404, and legacy redirect generated; internal links and assets verified.
+- Build checks enforce the base-aware redirect from `/work/turbofan/` to `/#work` and reject published NASA demo markup.
+- No PDFs are included. The résumé link remains absent until the cleaned PDF is supplied.
 
 ## Lighthouse mobile
 
 | Page | Date | Performance | Accessibility | Best practices | SEO |
 | --- | --- | ---: | ---: | ---: | ---: |
-| Homepage | November 16, 2026 | 100 | 100 | 100 | 100 |
-| NASA case study | November 16, 2026 | 100 | 100 | 100 | 100 |
+| Homepage | November 16, 2026 | 99 | 100 | 100 | 100 |
 
-Measured against the local production preview in headless Chrome. Scores can vary with hosting conditions. Raw reports and the score summary are in `verification/`.
+Measured against the local production preview in headless Chrome. Scores can vary with hosting conditions. `lighthouse-home.json` and `lighthouse-summary.json` contain the current results. The retained case-study report and case/demo screenshots are historical; that page is no longer published.
 
 ## Browser checks
 
-- Homepage, NASA case study, and 404 checked at 375, 768, and 1440 pixels, with no horizontal overflow or JavaScript errors.
-- Education → Experience → Projects → Outside of work, with one heading per section.
-- All four photos load at each viewport width, using four columns on desktop/tablet and two on mobile. The full images are contained within portrait frames; no people are cropped.
-- Desktop, tablet, mobile, and demo screenshots were visually inspected. Existing optimized WebP assets retain their orientation and metadata removal.
-- All five navigation targets, keyboard skip navigation, and reduced motion work. Lighthouse accessibility checks, including contrast, pass.
-- NASA confirmed warning, reset/first-cycle boundary, previous/next, slider boundaries, and engine selection passed. Without JavaScript, the controls are disabled and the accessible 176-row table opens correctly.
-- Current check results are recorded in `verification/browser-checks.json`. `photo-checks.json` is the historical November 15 photo-import check.
+- Homepage and 404 checked at 375, 768, and 1440 pixels without horizontal overflow or JavaScript errors.
+- The dog photo appears once: right of the introduction on desktop/tablet, below it on mobile. All four personal photos decode and preserve their complete frames.
+- Education, experience, and section order remain unchanged. Three concise projects link directly to their public GitHub repositories.
+- Both JavaScript-enabled and JavaScript-disabled browsers follow the old Turbofan URL to the homepage Projects section.
+- Keyboard skip navigation and reduced motion pass. Lighthouse accessibility checks, including contrast, pass.
+- Project descriptions were verified against public repository source. ROMS is identified as a team project, with only explicitly attributed SQL work claimed as Shaury’s contribution. Linked applications were not executed or certified as production-ready.
+- Current browser results are in `verification/browser-checks.json`.
 
 ## Screenshots
 
-![Desktop homepage](verification/desktop-home.png)
+![Desktop introduction](verification/desktop-intro.png)
+![Projects](verification/desktop-projects.png)
 ![Mobile homepage](verification/mobile-home.png)
 ![Tablet homepage](verification/tablet-home.png)
-![Photo gallery](verification/desktop-photos.png)
 
 ## Deployment
 

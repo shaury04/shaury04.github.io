@@ -26,10 +26,15 @@ if (outputs.some((path) => /\.pdf$/i.test(path) && relative(dist, path) !== "res
 if (existsSync(join(dist, "work/hotel-ranking"))) throw new Error("Removed case study is still published");
 
 const htmlFiles = outputs.filter((path) => path.endsWith(".html"));
+const retiredProject = readFileSync(join(dist, "work/turbofan/index.html"), "utf8");
+if (!retiredProject.includes('http-equiv="refresh"') || !retiredProject.includes(`url=${base}#work`)) {
+  throw new Error("The retired Turbofan route must redirect to the homepage Projects section");
+}
 const attributePattern = /\b(?:href|src)=["']([^"']+)["']/g;
 
 for (const htmlFile of htmlFiles) {
   const html = readFileSync(htmlFile, "utf8");
+  if (html.includes("data-nasa-demo")) throw new Error("The retired NASA demo must not be published");
   if (/work\/hotel-ranking|tel:/i.test(html)) {
     throw new Error(`${relative(dist, htmlFile)} contains a removed public contact or route`);
   }

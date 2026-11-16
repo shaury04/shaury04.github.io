@@ -1,56 +1,32 @@
 {
-  "checkedAt": "2026-11-16T18:08:07.149Z",
+  "checkedAt": "2026-11-16T19:17:37.722Z",
   "base": "http://127.0.0.1:4321",
   "checks": [
     {
       "width": 375,
-      "route": "/",
-      "passed": true
-    },
-    {
-      "width": 375,
-      "route": "/work/turbofan/",
-      "passed": true
-    },
-    {
-      "width": 375,
-      "route": "/404.html",
-      "passed": true
+      "home": "passed",
+      "portrait": "below introduction",
+      "projects": 3,
+      "redirect": "passed",
+      "notFound": "passed"
     },
     {
       "width": 768,
-      "route": "/",
-      "passed": true
-    },
-    {
-      "width": 768,
-      "route": "/work/turbofan/",
-      "passed": true
-    },
-    {
-      "width": 768,
-      "route": "/404.html",
-      "passed": true
+      "home": "passed",
+      "portrait": "right of introduction",
+      "projects": 3,
+      "redirect": "passed",
+      "notFound": "passed"
     },
     {
       "width": 1440,
-      "route": "/",
-      "passed": true
-    },
-    {
-      "width": 1440,
-      "route": "/work/turbofan/",
-      "passed": true
-    },
-    {
-      "width": 1440,
-      "route": "/404.html",
-      "passed": true
+      "home": "passed",
+      "portrait": "right of introduction",
+      "projects": 3,
+      "redirect": "passed",
+      "notFound": "passed"
     }
   ],
-  "photos": "Four full-frame responsive photos; four columns desktop/tablet and two mobile",
-  "copy": "Single section headings, no redundant hobby descriptions, no boredom navigation, no PDF link until supplied",
-  "demo": "Confirmed warning, reset, previous/next, slider boundaries, engine selection, and no-JS 176-row table passed",
-  "accessibility": "Keyboard skip link, navigation targets, and reduced motion passed",
+  "accessibility": "Keyboard skip link, reduced motion, no-JS homepage and legacy URL redirect passed",
   "errors": []
 }

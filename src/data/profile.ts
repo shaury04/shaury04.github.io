@@ -28,12 +28,32 @@ export const profile = {
   availability: "Graduating May 2027 · Open to new graduate roles",
   // Add the cleaned PDF at public/resume.pdf, then set this to "/resume.pdf".
   resume: undefined as "/resume.pdf" | undefined,
+  portrait: { src: "/images/personal/with-dogs-1120.webp", smallSrc: "/images/personal/with-dogs-560.webp", alt: "Relaxing on a couch with two dogs", width: 1120, height: 1493 } satisfies Photo,
   photos: [
-    { src: "/images/personal/with-dogs-1120.webp", smallSrc: "/images/personal/with-dogs-560.webp", alt: "Relaxing on a couch with two dogs", width: 1120, height: 1493 },
     { src: "/images/personal/gym-1120.webp", smallSrc: "/images/personal/gym-560.webp", alt: "Mirror photo at the gym", width: 1120, height: 1991 },
     { src: "/images/personal/friends-1120.webp", smallSrc: "/images/personal/friends-560.webp", alt: "A group of friends together in costumes", width: 1120, height: 1493 },
     { src: "/images/personal/dinner-1120.webp", smallSrc: "/images/personal/dinner-560.webp", alt: "Friends gathered around a restaurant table", width: 1120, height: 1493 },
   ] satisfies Photo[],
+  projects: [
+    {
+      name: "Ruby spreadsheet",
+      description: "A terminal spreadsheet with a custom formula language, cell references, range functions, loops, and conditionals",
+      technologies: "Ruby · Curses · Parsing & evaluation",
+      repository: "https://github.com/shaury04/spreadsheet-ruby",
+    },
+    {
+      name: "Restaurant management system",
+      description: "A team-built app for restaurant inventory, menus, and sales reporting — I contributed SQL reports for profitability and sales by day of the week",
+      technologies: "Python · Flask · PostgreSQL",
+      repository: "https://github.com/shaury04/ROMS",
+    },
+    {
+      name: "Turbofan remaining-life prediction",
+      description: "Comparing XGBoost and a 1D CNN for remaining-life prediction on NASA’s simulated engine data",
+      technologies: "Python · XGBoost · PyTorch",
+      repository: "https://github.com/shaury04/nasa",
+    },
+  ],
   interests: ["Basketball", "pickleball", "coding for fun"],
   links: [
     { label: "GitHub", href: "https://github.com/shaury04" },
