@@ -20,7 +20,9 @@ const walk = (directory) => readdirSync(directory).flatMap((name) => {
 });
 
 const outputs = walk(dist);
-if (outputs.some((path) => /\.pdf$/i.test(path))) throw new Error("Personal PDFs must not be published");
+if (outputs.some((path) => /\.pdf$/i.test(path) && relative(dist, path) !== "resume.pdf")) {
+  throw new Error("Only the approved public resume.pdf may be published");
+}
 if (existsSync(join(dist, "work/hotel-ranking"))) throw new Error("Removed case study is still published");
 
 const htmlFiles = outputs.filter((path) => path.endsWith(".html"));
@@ -28,7 +30,7 @@ const attributePattern = /\b(?:href|src)=["']([^"']+)["']/g;
 
 for (const htmlFile of htmlFiles) {
   const html = readFileSync(htmlFile, "utf8");
-  if (/resume\.pdf|work\/hotel-ranking|tel:/i.test(html)) {
+  if (/work\/hotel-ranking|tel:/i.test(html)) {
     throw new Error(`${relative(dist, htmlFile)} contains a removed public contact or route`);
   }
   for (const match of html.matchAll(attributePattern)) {

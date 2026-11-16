@@ -18,11 +18,11 @@ npm run verify
 npm run preview
 ```
 
-Verification includes Astro diagnostics, unit tests, a `/portfolio/` prefix build, and a final root build. Both builds check internal links and assets and reject PDFs or references to removed pages.
+Verification includes Astro diagnostics, unit tests, a `/portfolio/` prefix build, and a final root build. Both builds check internal links and assets and reject unexpected PDFs or references to removed pages.
 
 ## Content and photos
 
-The homepage follows résumé order after the introduction: Education → Experience → Projects, then About, interests, and contact. The palette uses terracotta accents, amber details, and soft cream backgrounds.
+The homepage follows résumé order after the introduction: Education → Experience → Projects, then Outside of work and contact. A single content column, serif headings, and consistent spacing keep the page concise. The palette uses terracotta accents, amber details, and soft cream backgrounds.
 
 School logos retain their original university colors. Sources: [UVA Brand](https://brand.virginia.edu/design-assets/logos/university-logos) and [JMU Brand](https://www.jmu.edu/identity/our-style/logo.shtml). The UVA SVG is from its brand-site footer; the JMU institutional horizontal logo has transparent outer padding trimmed for display, with the complete mark preserved.
 
@@ -30,13 +30,11 @@ School logos retain their original university colors. Sources: [UVA Brand](https
 - Edit the NASA case study in `src/content/work/turbofan.md`.
 - Adjust shared design tokens and responsive styles in `src/styles/global.css`.
 
-Set `boredLink` in the profile to a game, video, or another destination when ready. The “Click here if you’re bored” navigation link stays hidden while the value is unset.
-
-Four personal photos appear in About and Outside of Work. Their data lives in `portrait` and `photos` in `src/data/profile.ts`. Browser-ready WebP copies are under `public/images/personal/`, at 560px and 1120px widths. Images preserve the full frame and orientation, include descriptive alternative text and dimensions, and load lazily with responsive sources. Published files omit source EXIF/XMP metadata; the original files are not committed.
+Four personal photos appear together in Outside of work, in four columns on desktop and two on mobile. Their data lives in `photos` in `src/data/profile.ts`. Browser-ready WebP copies are under `public/images/personal/`, at 560px and 1120px widths. Images preserve the full frame and orientation inside consistent portrait frames, include descriptive alternative text and dimensions, and load lazily with responsive sources. Published files omit source EXIF/XMP metadata; the original files are not committed.
 
 Keep the copy straightforward and personal. Do not add jokes, humorous captions, or playful asides.
 
-The original résumé and phone number are intentionally excluded. PDF files are ignored by Git, and the build refuses to publish any PDF. Employer work appears only in Experience; do not add private code, internal screenshots, or unsupported production or revenue claims.
+The original résumé and phone number are intentionally excluded. When the cleaned public résumé is supplied, place it at `public/resume.pdf`, add an exception for that exact file to `.gitignore`, and set `profile.resume` to `/resume.pdf`. A base-aware “Résumé (PDF)” link will then appear beside the introduction actions. Until then, the link is absent. The build permits only that exact PDF path and validates that any résumé link points to an existing file. Employer work appears only in Experience; do not add private code, internal screenshots, or unsupported production or revenue claims.
 
 ## NASA data
 

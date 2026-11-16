@@ -1,54 +1,56 @@
 {
+  "checkedAt": "2026-11-16T18:08:07.149Z",
   "base": "http://127.0.0.1:4321",
-  "checkedAt": "2026-09-17T19:01:46.705Z",
-  "layouts": [
+  "checks": [
     {
       "width": 375,
       "route": "/",
-      "overflow": false
+      "passed": true
     },
     {
       "width": 375,
       "route": "/work/turbofan/",
-      "overflow": false
+      "passed": true
     },
     {
       "width": 375,
       "route": "/404.html",
-      "overflow": false
+      "passed": true
     },
     {
       "width": 768,
       "route": "/",
-      "overflow": false
+      "passed": true
     },
     {
       "width": 768,
       "route": "/work/turbofan/",
-      "overflow": false
+      "passed": true
     },
     {
       "width": 768,
       "route": "/404.html",
-      "overflow": false
+      "passed": true
     },
     {
       "width": 1440,
       "route": "/",
-      "overflow": false
+      "passed": true
     },
     {
       "width": 1440,
       "route": "/work/turbofan/",
-      "overflow": false
+      "passed": true
     },
     {
       "width": 1440,
       "route": "/404.html",
-      "overflow": false
+      "passed": true
     }
   ],
-  "demo": "confirmed, pending, missed, reset, previous/next bounds, engine selection, slider and visible rows passed",
-  "accessibility": "keyboard skip link, reduced motion, no-JS narrative and 176-row table passed",
+  "photos": "Four full-frame responsive photos; four columns desktop/tablet and two mobile",
+  "copy": "Single section headings, no redundant hobby descriptions, no boredom navigation, no PDF link until supplied",
+  "demo": "Confirmed warning, reset, previous/next, slider boundaries, engine selection, and no-JS 176-row table passed",
+  "accessibility": "Keyboard skip link, navigation targets, and reduced motion passed",
   "errors": []
 }

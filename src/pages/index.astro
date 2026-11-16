@@ -2,114 +2,73 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { profile } from "../data/profile";
 import { withBase } from "../utils/paths";
-import data from "../data/nasa-demo.json";
 
-const trajectory = data.trajectories[0];
-const records = trajectory.records;
-const graphY = (value: number) => 222 - (value / 250) * 182;
-const line = (key: "predictedRul" | "groundTruthRul") => records.map((record, i) => `${40 + i / (records.length - 1) * 420},${graphY(record[key])}`).join(" ");
+const interests = new Intl.ListFormat("en", { style: "long", type: "conjunction" }).format(profile.interests);
 ---
 
 <BaseLayout>
-  <section class="hero shell" aria-labelledby="intro-title">
-    <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Software engineering & applied ML</p>
-    <div class="hero-grid">
-      <div class="hero-name"><p class="hello">Hi, I’m</p><h1 id="intro-title">Shaury<br /><span>Gautam</span></h1></div>
-      <div class="hero-introduction">
-        <h2>{profile.headline}</h2>
-        <p class="hero-copy">{profile.introduction}</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#education">Explore my background <span aria-hidden="true">↘</span></a>
-          <a class="button button-quiet" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
+  <div class="shell">
+    <section class="hero" aria-labelledby="intro-title">
+      <h1 id="intro-title">{profile.name}</h1>
+      <p class="hero-copy">{profile.introduction}</p>
+      <p class="availability">{profile.availability}</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#work">Explore my work <span aria-hidden="true">↘</span></a>
+        <a class="text-link" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
+        {profile.resume && <a class="resume-link" href={withBase(profile.resume)}>Résumé (PDF)</a>}
+      </div>
+    </section>
+
+    <section class="section" id="education" aria-labelledby="education-title">
+      <h2 id="education-title">Education</h2>
+      <div class="education-list">
+        {profile.education.map(item => (
+          <article class="education-item">
+            <div class="education-logo"><img src={withBase(item.logo.src)} alt={item.logo.alt} width={item.logo.width} height={item.logo.height} loading="lazy" decoding="async" /></div>
+            <div class="education-details"><h3>{item.school}</h3><p>{item.degree}</p><p class="item-meta">{item.location}</p></div>
+            <p class="education-period item-meta">{item.period}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <h2 id="experience-title">Experience</h2>
+      <div class="experience-list">
+        {profile.experience.map(item => (
+          <article class="experience-item">
+            <div class="experience-heading">
+              <div><h3>{item.company}</h3><p class="experience-role">{item.role}</p></div>
+              <div class="experience-meta item-meta"><p>{item.period}</p><p>{item.location}</p></div>
+            </div>
+            <ul class="experience-highlights">{item.highlights.map(highlight => <li>{highlight}</li>)}</ul>
+            <p class="technologies">{item.skills.join(" · ")}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" id="work" aria-labelledby="work-title">
+      <h2 id="work-title">Projects</h2>
+      <article class="project-preview">
+        <div class="project-copy">
+          <h3>Turbofan early warning</h3>
+          <p>Estimating remaining engine life and evaluating persistent early warnings with NASA’s simulated C-MAPSS data</p>
+          <p class="technologies">Python · XGBoost · PyTorch</p>
+          <div class="project-links"><a class="text-link" href={withBase("/work/turbofan/")}>Read the case study <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/shaury04/nasa">Source <span aria-hidden="true">↗</span></a></div>
         </div>
+        <div class="project-result"><strong>52<span>%</span></strong><p>Lower endpoint error on FD001<br />compared with an age-only baseline</p></div>
+      </article>
+    </section>
+
+    <section class="section personal-section" id="about" aria-labelledby="personal-title">
+      <h2 id="personal-title">Outside of work</h2>
+      <p class="interests">{interests}</p>
+      <div class="photo-gallery" aria-label="Personal photos">
+        {profile.photos.map(photo => (
+          <img src={withBase(photo.src)} srcset={`${withBase(photo.smallSrc)} 560w, ${withBase(photo.src)} 1120w`} sizes="(max-width: 700px) calc((100vw - 52px) / 2), (max-width: 1080px) calc((100vw - 100px) / 4), 238px" alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" decoding="async" />
+        ))}
       </div>
-    </div>
-    <div class="hero-footnote">
-      <span>University of Virginia <span class="separator" aria-hidden="true">/</span> Class of 2027</span>
-      <span>Open to new graduate SWE & ML opportunities</span>
-    </div>
-  </section>
-
-  <section class="section shell education-section" id="education" aria-labelledby="education-title">
-    <div class="section-heading"><p class="eyebrow">Education</p><h2 id="education-title">Computer science<br /><em>at UVA and JMU</em></h2></div>
-    <div class="education-list">
-      {profile.education.map(item => (
-        <article class="education-item">
-          <div class="education-logo"><img src={withBase(item.logo.src)} alt={item.logo.alt} width={item.logo.width} height={item.logo.height} loading="lazy" decoding="async" /></div>
-          <div class="education-details"><h3>{item.school}</h3><p class="education-degree">{item.degree}</p><p class="education-location">{item.location}</p></div>
-          <p class="education-period">{item.period}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section shell" id="experience" aria-labelledby="experience-title">
-    <div class="section-heading"><p class="eyebrow">Experience</p><h2 id="experience-title">Industry and<br /><em>research experience</em></h2></div>
-    <div class="experience-list">
-      {profile.experience.map((item) => (
-        <article class="experience-item">
-          <div class="experience-company"><h3>{item.company}</h3><p class="experience-role">{item.role}</p><p class="experience-period">{item.period}</p><p class="experience-location">{item.location}</p></div>
-          <div class="experience-details"><p>{item.summary}</p><ul>{item.highlights.map(highlight => <li>{highlight}</li>)}</ul><div class="tag-list">{item.skills.map(skill => <span class="tag">{skill}</span>)}</div></div>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section shell" id="work" aria-labelledby="work-title">
-    <div class="section-heading">
-      <p class="eyebrow">Projects</p>
-      <h2 id="work-title">Selected <em>project</em></h2>
-    </div>
-    <article class="project-card">
-      <div class="project-copy">
-        <p class="project-index">Independent project <span aria-hidden="true">·</span> NASA C-MAPSS</p>
-        <h3>Turbofan<br />early warning</h3>
-        <p>A predictive-maintenance pipeline that estimates remaining useful life from simulated engine data and evaluates persistent early warnings.</p>
-        <div class="tag-list" aria-label="Project technologies"><span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">PyTorch</span></div>
-        <a class="text-link" href={withBase("/work/turbofan/")}>Inside the project <span aria-hidden="true">↗</span></a>
-      </div>
-      <figure class="project-visual">
-        <div class="signal-heading"><span>REMAINING USEFUL LIFE</span><span>FD001 / 052</span></div>
-        <div class="signal-number">52<span>%</span><p>lower endpoint error on FD001<br />vs. an age-only baseline</p></div>
-        <svg class="sparkline" viewBox="0 0 500 265" role="img" aria-labelledby="spark-title spark-desc">
-          <title id="spark-title">Test-engine remaining useful life predictions</title>
-          <desc id="spark-desc">XGBoost predictions and retrospective ground truth for FD001 engine 52. Predictions approach the 50-cycle warning horizon.</desc>
-          {[0, 50, 125, 250].map(tick => <g><line x1="40" y1={graphY(tick)} x2="460" y2={graphY(tick)} class="spark-grid" /><text x="28" y={graphY(tick) + 4} text-anchor="end">{tick}</text></g>)}
-          <polyline points={line("groundTruthRul")} class="spark-truth" />
-          <line x1="40" y1={graphY(50)} x2="460" y2={graphY(50)} class="spark-threshold" />
-          <polyline points={line("predictedRul")} class="spark-prediction" />
-          <text x="40" y="250">Cycle 1</text><text x="460" y="250" text-anchor="end">{records.length}</text>
-        </svg>
-        <figcaption><span class="signal-key">XGBoost prediction</span><span>Simulated NASA test data</span></figcaption>
-      </figure>
-    </article>
-    <div class="project-context"><span>265K sensor cycles</span><span>1,416 engine trajectories</span><span>4 operating / fault regimes</span><a href="https://github.com/shaury04/nasa">View source <span aria-hidden="true">↗</span></a></div>
-  </section>
-
-  <section class="section about-section" id="about" aria-labelledby="about-title">
-    <div class="shell about-grid">
-      <img class="portrait" src={withBase(profile.portrait.src)} srcset={`${withBase(profile.portrait.smallSrc!)} 560w, ${withBase(profile.portrait.src)} 1120w`} sizes="(max-width: 700px) calc(100vw - 40px), 400px" alt={profile.portrait.alt} width={profile.portrait.width} height={profile.portrait.height} loading="lazy" decoding="async" />
-      <div class="about-copy">
-        <p class="eyebrow">Background</p><h2 id="about-title">About <em>me</em></h2>
-        <p>I’m studying computer science at the University of Virginia, after completing my undergraduate degree at James Madison University. My experience includes hotel ranking, LLM pipelines, and agents that navigate phone menus.</p>
-        <p>I enjoy building complete systems, from data and modeling to interfaces and evaluation. I’m looking for opportunities to contribute to software engineering and applied ML teams.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section shell interests-section" aria-labelledby="interests-title">
-    <div class="section-heading"><p class="eyebrow">Interests</p><h2 id="interests-title">Outside <em>of work</em></h2></div>
-    <div class="interests-grid">{profile.interests.map((interest) => <article class="interest-item">
-      {interest.photo && <img src={withBase(interest.photo.src)} alt={interest.photo.alt} width={interest.photo.width} height={interest.photo.height} loading="lazy" decoding="async" />}
-      <h3>{interest.name}</h3><p>{interest.description}</p>
-    </article>)}</div>
-    <div class="photo-gallery" aria-label="Personal photos">
-      {profile.photos.map(photo => (
-        <figure>
-          <img src={withBase(photo.src)} srcset={`${withBase(photo.smallSrc)} 560w, ${withBase(photo.src)} 1120w`} sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1200px) 34vw, 400px" alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" decoding="async" />
-          <figcaption>{photo.caption}</figcaption>
-        </figure>
-      ))}
-    </div>
-  </section>
+    </section>
+  </div>
 </BaseLayout>
