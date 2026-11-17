@@ -37,10 +37,9 @@ The original résumé and phone number are intentionally excluded. When the clea
 
 ## Projects and source evidence
 
-Projects are short homepage entries with direct repository links. The retired `/work/turbofan/` URL redirects to the homepage Projects section, including on prefixed deployments. NASA demo components, data, and tests remain in the source tree as historical implementation material, but are not included in the published site.
+Turbofan is listed first, followed by Ruby spreadsheet. Projects are short homepage entries with direct repository links. The retired `/work/turbofan/` URL redirects to the homepage Projects section, including on prefixed deployments. NASA demo components, data, and tests remain in the source tree as historical implementation material, but are not included in the published site.
 
 - [Ruby spreadsheet](https://github.com/shaury04/spreadsheet-ruby): the terminal interface, parser, and grammar establish formula editing, cell references, range functions, loops, and conditionals.
-- [ROMS](https://github.com/shaury04/ROMS): the README identifies the team project; Flask routes implement inventory editing. [SQL views](https://github.com/shaury04/ROMS/blob/main/database/pgsql/views.sql) attribute the profitability and sales-by-day reports to Shaury. Do not imply solo authorship or production adoption.
 - [NASA benchmark](https://github.com/shaury04/nasa): described as a comparison on simulated engine data, not operational aircraft telemetry or a NASA role.
 
 Repository source was reviewed November 16, 2026. This was a content review, not a runtime certification of the linked applications.

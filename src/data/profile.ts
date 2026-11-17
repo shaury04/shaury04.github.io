@@ -36,22 +36,16 @@ export const profile = {
   ] satisfies Photo[],
   projects: [
     {
-      name: "Ruby spreadsheet",
-      description: "A terminal spreadsheet with a custom formula language, cell references, range functions, loops, and conditionals",
-      technologies: "Ruby · Curses · Parsing & evaluation",
-      repository: "https://github.com/shaury04/spreadsheet-ruby",
-    },
-    {
-      name: "Restaurant management system",
-      description: "A team-built app for restaurant inventory, menus, and sales reporting — I contributed SQL reports for profitability and sales by day of the week",
-      technologies: "Python · Flask · PostgreSQL",
-      repository: "https://github.com/shaury04/ROMS",
-    },
-    {
       name: "Turbofan remaining-life prediction",
       description: "Comparing XGBoost and a 1D CNN for remaining-life prediction on NASA’s simulated engine data",
       technologies: "Python · XGBoost · PyTorch",
       repository: "https://github.com/shaury04/nasa",
+    },
+    {
+      name: "Ruby spreadsheet",
+      description: "A terminal spreadsheet with a custom formula language, cell references, range functions, loops, and conditionals",
+      technologies: "Ruby · Curses · Parsing & evaluation",
+      repository: "https://github.com/shaury04/spreadsheet-ruby",
     },
   ],
   interests: ["Basketball", "pickleball", "coding for fun"],

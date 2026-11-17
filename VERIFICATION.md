@@ -1,5 +1,11 @@
 # Verification report
 
+## Latest content update
+
+The project list now contains exactly two entries: Turbofan first, Ruby spreadsheet second. ROMS is removed. Astro checks, all 8 unit tests, and root/prefixed builds pass; the generated homepage was checked for the exact project order and absence of ROMS. The visual checks, screenshots, and Lighthouse results below describe the preceding layout update; styling is unchanged.
+
+## Previous layout verification
+
 Validated November 16, 2026 after adding the Ruby spreadsheet and ROMS entries, shortening Turbofan, and moving the dog photo beside the introduction.
 
 ## Automated checks
